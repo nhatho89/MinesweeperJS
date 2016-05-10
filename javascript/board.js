@@ -76,6 +76,7 @@ Board.prototype.generateBoard = function() {
       tile.dataset.row = i
       tile.dataset.col = j
       tile.dataset.bombCount = 0
+      tile.style.backgroundColor = "silver"
 
       if (bombs.indexOf(count) !== -1) {
         tile.dataset.isBomb = "true"
