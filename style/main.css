@@ -1,0 +1,12 @@
+#minesweeper {
+  width: 376px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile {
+  width: 40px;
+  height: 40px;
+  border: 1px solid silver;
+}
