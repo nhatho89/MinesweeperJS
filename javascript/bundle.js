@@ -69,6 +69,10 @@
 	
 	}
 	
+	var handleReplay = function() {
+	  location.reload();
+	}
+	
 	var gameOver = function(el) {
 	  if (document.getElementsByClassName("game-over").length === 0) {
 	    el.innerHTML = "💣";
@@ -76,8 +80,13 @@
 	    var gameOver = document.createElement("h4")
 	    gameOver.innerHTML = "GAME OVER!"
 	    gameOver.className = "game-over"
+	    var replay = document.createElement("button")
+	    replay.onclick = handleReplay;
+	    replay.className = "replay"
+	    replay.innerHTML = "Replay"
 	    document.getElementById("minesweeper").appendChild(gameOver)
-	    
+	    document.getElementById("minesweeper").appendChild(replay)
+	
 	  }
 	
 	}
