@@ -69,6 +69,44 @@
 	
 	}
 	
+	var gameOver = function(el) {
+	  if (document.getElementsByClassName("game-over").length === 0) {
+	    el.innerHTML = "💣";
+	    el.style.backgroundColor = "red";
+	    var gameOver = document.createElement("h4")
+	    gameOver.innerHTML = "GAME OVER!"
+	    gameOver.className = "game-over"
+	    document.getElementById("minesweeper").appendChild(gameOver)
+	    
+	  }
+	
+	}
+	
+	var gameWin = function() {
+	  var allTiles = document.getElementsByClassName("tile")
+	
+	  for (var i = 0; i < allTiles.length; i++) {
+	    if (allTiles[i].dataset.isBomb === "true") {
+	      allTiles[i].innerHTML = "⚑"
+	    }
+	  }
+	
+	}
+	
+	var checkWin = function() {
+	  var allTiles = document.getElementsByClassName("tile")
+	  var count = 0
+	  for (var i = 0; i < allTiles.length; i++) {
+	    if (allTiles[i].style.backgroundColor === "white") {
+	      count++
+	    }
+	  }
+	  if (count === 56) {
+	    return true
+	  }
+	  return false
+	}
+	
 	var handleCascade = function(el) {
 	  var neighbors = getNeighbors(el)
 	  console.log(neighbors);
@@ -87,8 +125,6 @@
 	      }
 	    }
 	  })
-	
-	
 	}
 	
 	var getNeighbors = function(el) {
@@ -134,12 +170,8 @@
 	  var el = document.getElementById(e.target.id)
 	  // console.log(e.target.id);
 	  if (el.dataset.isBomb === "true") {
-	    el.innerHTML = "💣";
-	    el.style.backgroundColor = "red";
-	    var gameOver = document.createElement("h4")
-	    gameOver.innerHTML = "GAME OVER!"
-	    gameOver.className = "game-over"
-	    document.getElementById("minesweeper").appendChild(gameOver)
+	    gameOver(el);
+	
 	  } else {
 	
 	    if (el.dataset.bombCount === "0") {
@@ -148,6 +180,10 @@
 	      el.style.backgroundColor = "white";
 	      el.innerHTML = el.dataset.bombCount
 	    }
+	  }
+	
+	  if (checkWin()) {
+	    gameWin();
 	  }
 	}
 	
