@@ -1,8 +1,16 @@
+body {
+  /*height: 100%;*/
+}
+
 #minesweeper {
-  width: 376px;
-  height: auto;
+  width: 336px;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%);
 }
 
 .tile {
@@ -12,10 +20,12 @@
   background-color: silver;
 }
 
-.game-over {
+h4 {
   position: relative;
   justify-content: center;
   display: flex;
   flex-direction: column;
   text-align: center;
+  font-size: 40px;
+  width: 100%;
 }
