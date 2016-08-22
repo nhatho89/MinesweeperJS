@@ -1,9 +1,9 @@
 var Board = require('./board.js');
 
-var Game = function(rootEl) {
+var Game = function(rootEl,handleClick) {
+  this.handleClick = handleClick;
   this.rootEl = rootEl;
   var board = new Board(rootEl,8,8)
-
 }
 
 var handleReplay = function() {
@@ -14,15 +14,20 @@ var gameOver = function(el) {
   if (document.getElementsByClassName("game-over").length === 0) {
     el.innerHTML = "💣";
     el.style.backgroundColor = "red";
+    // display none and toggle instead
     var gameOver = document.createElement("h4")
     gameOver.innerHTML = "GAME OVER!"
     gameOver.className = "game-over"
+    var replayContainer = document.createElement('div')
+    replayContainer.className = "row-center"
     var replay = document.createElement("button")
     replay.onclick = handleReplay;
     replay.className = "replay"
     replay.innerHTML = "Replay"
     document.getElementById("minesweeper").appendChild(gameOver)
-    document.getElementById("minesweeper").appendChild(replay)
+    document.getElementById("minesweeper").appendChild(replayContainer)
+    replayContainer.appendChild(replay);
+    // document.removeEventListener('click', this.handleClick);
 
   }
 

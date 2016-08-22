@@ -46,11 +46,22 @@
 
 	var Game = __webpack_require__(1);
 	
-	
-	
 	(function () {
 	  var rootEl = document.getElementById("minesweeper");
-	  var game = new Game(rootEl);
+	  var game = new Game(rootEl, handleClick);
+	  // var games = 0;
+	
+	  // var newGame = document.getElementById('new-game');
+	  //
+	  //
+	  // newGame.addEventListener('click', function(e){
+	  //   e.preventDefault();
+	  //   games++
+	  //   var newGameWindow = document.createElement("div")
+	  //   newGameWindow.id = "new-game-" + games
+	  //   rootEl.appendChild(newGameWindow)
+	  //   new Game(newGameWindow);
+	  // })
 	
 	  var handleClick = game.openTile;
 	  document.addEventListener('click', handleClick);
@@ -63,10 +74,10 @@
 
 	var Board = __webpack_require__(2);
 	
-	var Game = function(rootEl) {
+	var Game = function(rootEl,handleClick) {
+	  this.handleClick = handleClick;
 	  this.rootEl = rootEl;
 	  var board = new Board(rootEl,8,8)
-	
 	}
 	
 	var handleReplay = function() {
@@ -77,15 +88,20 @@
 	  if (document.getElementsByClassName("game-over").length === 0) {
 	    el.innerHTML = "💣";
 	    el.style.backgroundColor = "red";
+	    // display none and toggle instead
 	    var gameOver = document.createElement("h4")
 	    gameOver.innerHTML = "GAME OVER!"
 	    gameOver.className = "game-over"
+	    var replayContainer = document.createElement('div')
+	    replayContainer.className = "row-center"
 	    var replay = document.createElement("button")
 	    replay.onclick = handleReplay;
 	    replay.className = "replay"
 	    replay.innerHTML = "Replay"
 	    document.getElementById("minesweeper").appendChild(gameOver)
-	    document.getElementById("minesweeper").appendChild(replay)
+	    document.getElementById("minesweeper").appendChild(replayContainer)
+	    replayContainer.appendChild(replay);
+	    // document.removeEventListener('click', this.handleClick);
 	
 	  }
 	
